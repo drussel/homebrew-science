@@ -75,9 +75,10 @@ class Opencv < Formula
     args << "-DWITH_QT=" + ((build.with? "qt") ? "ON" : "OFF")
     args << "-DWITH_TBB=" + ((build.with? "tbb") ? "ON" : "OFF")
     args << "-DWITH_FFMPEG=" + ((build.with? "ffmpeg") ? "ON" : "OFF")
-    args << "-DWITH_GSTREAMER=" + ((build.with? "gstreamer") ? "ON" : "OFF")
-    devel do
+    if build.devel?
       args << "-DWITH_GSTREAMER_0_10=" + ((build.with? "gstreamer") ? "ON" : "OFF")
+    else
+      args << "-DWITH_GSTREAMER=" + ((build.with? "gstreamer") ? "ON" : "OFF")
     end
     args << "-DWITH_QUICKTIME=" + ((build.with? "quicktime") ? "ON" : "OFF")
     args << "-DWITH_1394=" + ((build.with? "libdc1394") ? "ON" : "OFF")
